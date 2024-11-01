@@ -4,15 +4,24 @@ using UnityEngine;
 
 public class LevelController : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+   public Stone stoneSpawner;
 
-    // Update is called once per frame
-    void Update()
+    private float m_timer;
+    [SerializeField]
+
+    private float m_delay =2f;
+
+   public void Start()
+   {
+        m_timer = Time.time;
+   }
+
+ public void Update()
+{
+    if (Time.time> m_timer+m_delay)
     {
-        
+        stoneSpawner.Spawn();
+        m_timer=Time.time;
     }
+}
 }
