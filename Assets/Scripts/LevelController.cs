@@ -1,7 +1,4 @@
-using System;
-using System.Collections;
 using System.Collections.Generic;
-using Golf;
 using UnityEngine;
 
 namespace Golf
@@ -27,11 +24,11 @@ namespace Golf
         {
             if (stick)
             {
-                stick.onCollisionStone -= OnCollisionStone;
+                stick.onCollisionStone -= OnCollisionStick;
             }
         }
 
-        private void Update()
+       private void Update()
         {
             if (Time.time > m_timer + m_delay)
             {
