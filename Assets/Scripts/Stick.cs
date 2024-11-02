@@ -1,6 +1,5 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.PlayerLoop;
 
 namespace Golf
 {
@@ -17,6 +16,7 @@ namespace Golf
         private bool m_isDown = false;
         private Rigidbody m_rigidbody;
 
+        public Vector3 LastPointPosition { get => m_lastPointPosition; set => m_lastPointPosition = value; }
 
         private void Awake()
         {
@@ -35,8 +35,8 @@ namespace Golf
 
         private void Update()
         {
-            m_dir = (point.position - m_lastPointPosition).normalized;
-            m_lastPointPosition = point.position;            
+            m_dir = (point.position - LastPointPosition).normalized;
+            LastPointPosition = point.position;            
         }
 
         private void FixedUpdate()

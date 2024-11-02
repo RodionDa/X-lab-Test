@@ -1,25 +1,26 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Stone : MonoBehaviour
+namespace Golf
 {
- [SerializeField]
-    private Transform m_point;
+    public class Stone : MonoBehaviour
+    {
+        public event Action onCollisionStone;
+        public bool isDirty = false;
 
-[SerializeField]
-private GameObject[] m_prefabs;
+        private void OnCollisionEnter(Collision other)
+        {
+            if (isDirty)
+            {
+                return;
+            }
 
-private void Start()
-{
-    if(m_point == null)
-    m_point = transform;
-}
-
-public void Spawn()
-{
-    int index = Random.Range(0, m_prefabs.Length);
-    Instantiate(m_prefabs[index], m_point.position, m_point.rotation);
-    
-}
+            if (other.gameObject.GetComponent<Stone>())
+            {
+                onCollisionStone?.Invoke();
+            }
+        }
+    }
 }

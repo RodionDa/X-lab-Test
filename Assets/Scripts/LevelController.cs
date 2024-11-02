@@ -1,9 +1,12 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using Golf;
 using UnityEngine;
 
-public class LevelController : MonoBehaviour
+namespace Golf
 {
+    public class LevelController : MonoBehaviour
     {
         public Stick stick;
         public StoneSpawner stoneSpawner;
