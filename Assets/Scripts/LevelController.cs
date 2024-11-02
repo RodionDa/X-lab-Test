@@ -29,20 +29,30 @@ namespace Golf
         }
 
        private void Update()
+{
+    if (Time.time > m_timer + m_delay)
+    {
+        m_timer = Time.time;
+
+        var go = stoneSpawner.Spawn();
+        if (go == null)
         {
-            if (Time.time > m_timer + m_delay)
-            {
-                m_timer = Time.time;
-
-                var go = stoneSpawner.Spawn();
-                var stone = go.GetComponent<Stone>();
-
-                stone.onCollisionStone += OnCollisionStone;
-
-                m_stones.Add(stone);
-            }
-
+            Debug.LogWarning("Spawn() returned null!");
+            return; // Выход из метода, если объект не создан
         }
+
+        var stone = go.GetComponent<Stone>();
+        if (stone == null)
+        {
+            Debug.LogWarning("The spawned object does not have a Stone component!");
+            return; // Выход из метода, если компонент отсутствует
+        }
+
+        stone.onCollisionStone += OnCollisionStone;
+        m_stones.Add(stone);
+    }
+}
+
 
         private void OnCollisionStick()
         {
