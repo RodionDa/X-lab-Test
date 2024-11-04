@@ -4,14 +4,13 @@ using UnityEngine;
 
 public class Sounds : MonoBehaviour
 {
-public AudioClip soundClip; // Перетащите сюда ваш аудиофайл в инспекторе
+public AudioClip[] soundClips; // Массив аудиофайлов
     private AudioSource audioSource;
 
     void Start()
     {
         // Добавляем AudioSource к объекту
         audioSource = gameObject.AddComponent<AudioSource>();
-        audioSource.clip = soundClip;
     }
 
     void Update()
@@ -25,9 +24,11 @@ public AudioClip soundClip; // Перетащите сюда ваш аудиоф
 
     void PlaySound()
     {
-        if (audioSource != null && soundClip != null)
+        if (audioSource != null && soundClips.Length > 0)
         {
-            audioSource.PlayOneShot(soundClip);
+            // Выбираем случайный звук из массива
+            AudioClip randomClip = soundClips[Random.Range(0, soundClips.Length)];
+            audioSource.PlayOneShot(randomClip);
         }
     }
 }

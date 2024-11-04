@@ -7964,6 +7964,7 @@ GameObject:
   - component: {fileID: 381025084}
   - component: {fileID: 381025083}
   - component: {fileID: 381025082}
+  - component: {fileID: 381025085}
   m_Layer: 0
   m_Name: Camera
   m_TagString: Untagged
@@ -8045,6 +8046,21 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &381025085
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 381025081}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 75add323cc6f45544815b9a6d8847e72, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  backgroundMusic: {fileID: 8300000, guid: 305ee3cede38d32499cf0450197a097c, type: 3}
+  soundEffects:
+  - {fileID: 8300000, guid: db3013cbf4041b44aba0c17acc78dd17, type: 3}
 --- !u!1001 &381027585
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -18458,6 +18474,7 @@ GameObject:
   - component: {fileID: 1673487101}
   - component: {fileID: 1673487103}
   - component: {fileID: 1673487102}
+  - component: {fileID: 1673487104}
   m_Layer: 0
   m_Name: Stick
   m_TagString: Untagged
@@ -18524,6 +18541,22 @@ MonoBehaviour:
   speed: 360
   power: 100
   point: {fileID: 1770947632}
+--- !u!114 &1673487104
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1673487100}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f3b4b39b3d785a04fb25b7bb98a56302, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  soundClips:
+  - {fileID: 8300000, guid: cf820a1ec479f4249861ad16c6d8066b, type: 3}
+  - {fileID: 8300000, guid: 964fa43b265b1694aa94a674a2ba0110, type: 3}
+  - {fileID: 8300000, guid: 702c7db8e6030d24d820650562ea9c54, type: 3}
 --- !u!1001 &1683111089
 PrefabInstance:
   m_ObjectHideFlags: 0
