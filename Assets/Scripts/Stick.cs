@@ -18,7 +18,12 @@ namespace Golf
         private void Awake()
         {
             m_rigidbody = GetComponent<Rigidbody>();
-            m_lastPointPosition = point.position; // Инициализируем начальную позицию
+            m_lastPointPosition = point.position;
+
+            // Инвертируем начальный угол, чтобы клюшка смотрела в противоположную сторону
+            Vector3 initialRotation = transform.localEulerAngles;
+            initialRotation.z += 360f;  // Поворот на 180 градусов по оси Z
+            transform.localEulerAngles = initialRotation;
         }
 
         public void Down()
@@ -33,8 +38,7 @@ namespace Golf
 
         private void Update()
         {
-            m_dir = (point.position - m_lastPointPosition).normalized;
-            m_lastPointPosition = point.position;            
+                        
         }
 
         private void FixedUpdate()
@@ -49,6 +53,9 @@ namespace Golf
                 angle.z = Mathf.MoveTowardsAngle(angle.z, maxAngle, speed * Time.deltaTime);
             }
             transform.localEulerAngles = angle;
+
+            m_dir = (point.position - m_lastPointPosition).normalized;
+            m_lastPointPosition = point.position;
         }
 
         private void OnCollisionEnter(Collision other)
@@ -64,7 +71,7 @@ namespace Golf
                 {
                     // Используем направление вперёд для силы
                     Vector3 launchDirection = transform.forward; // Направление вперёд от палки
-                    other.rigidbody.AddForce(launchDirection * power, ForceMode.Impulse);
+                    other.rigidbody.AddForce(m_dir * power, ForceMode.Impulse);
                 }
 
                 onCollisionStone?.Invoke();
