@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.PlayerLoop;
 
 namespace Golf
 {
@@ -15,15 +16,10 @@ namespace Golf
         private bool m_isDown = false;
         private Rigidbody m_rigidbody;
 
+
         private void Awake()
         {
             m_rigidbody = GetComponent<Rigidbody>();
-            m_lastPointPosition = point.position;
-
-            // Инвертируем начальный угол, чтобы клюшка смотрела в противоположную сторону
-            Vector3 initialRotation = transform.localEulerAngles;
-            initialRotation.z += 360f;  // Поворот на 180 градусов по оси Z
-            transform.localEulerAngles = initialRotation;
         }
 
         public void Down()
@@ -34,11 +30,6 @@ namespace Golf
         public void Up()
         {
             m_isDown = true;
-        }
-
-        private void Update()
-        {
-                        
         }
 
         private void FixedUpdate()
@@ -60,20 +51,16 @@ namespace Golf
 
         private void OnCollisionEnter(Collision other)
         {
-            if (other.gameObject.TryGetComponent<Stone>(out var stone) && !stone.isDirty)
+             if (other.gameObject.TryGetComponent<Stone>(out var stone) && !stone.isDirty)
             {
                 stone.isDirty = true;
 
-                // Проверка скорости палки
-                //float speedMagnitude = m_rigidbody.velocity.magnitude; // Получаем скорость палки
+              
+                var contact = other.contacts[0];
+                Vector3 hitDirection = contact.normal;
+                other.rigidbody.AddForce(m_dir * power, ForceMode.Impulse);
 
-                //if (speedMagnitude > 100f) // Установите порог, например 1f
-                {
-                    // Используем направление вперёд для силы
-                    Vector3 launchDirection = transform.forward; // Направление вперёд от палки
-                    other.rigidbody.AddForce(m_dir * power, ForceMode.Impulse);
-                }
-
+       
                 onCollisionStone?.Invoke();
             }
         }
