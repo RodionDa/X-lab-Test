@@ -76,5 +76,10 @@ namespace Golf
             Debug.Log("GAME OVER!!!");
             onGameOver?.Invoke(m_score);
         }
+
+         private void OnTriggerEnter(Collider other)
+        {
+            
+        }
     }
 }
