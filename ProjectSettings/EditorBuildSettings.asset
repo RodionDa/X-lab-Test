@@ -5,7 +5,10 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Test_1.unity
     guid: 44fa1c2e31cad4d48a739d0683487294
+  - enabled: 1
+    path: Assets/Scenes/Golf.unity
+    guid: dad99c28d1b5bc64aa4f08f4661e610e
   m_configObjects: {}
