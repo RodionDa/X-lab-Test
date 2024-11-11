@@ -107,10 +107,5 @@ namespace Golf
                 }
             }
         }
-
-        private void OnTriggerEnter(Collider other)
-        {
-            // Ваш код для обработки триггеров (если нужно)
-        }
     }
 }
